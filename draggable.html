@@ -26,23 +26,29 @@
       });
       var colors = 'white';
 
-      for(var n = 0; n < 50; n++) {
+      for(var n = 0; n < 1000; n++) {
         // anonymous function to induce scope
         (function() {
           var i = n;
-          
+          var xCord = 0;
+          xCord = (i/10) * 70;
+          correction = (i/2) * 2;
+          alert("X Cordinate: " + xCord);
+
+
           /** Intitilizer for the hexagons */
           var hexa = new Kinetic.RegularPolygon({
             sides:6,
             radius: 40,
-            x: (i/10) * 70 + 210,
-            y: ((i%10) * 80) + 60,
+            x: (xCord),
+            y: ((i%10) * 85) + 60,
             /*width: 60,
             height: 50,*/
             name: colors[i],
             fill: colors,
             //stroke: 'black',
-            strokeWidth: 2
+            strokeWidth: 2,
+            draggable: true
           });
 
           //group.add(hexa);
