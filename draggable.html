@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+    <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.5.4.min.js"></script>
+    <script defer="defer">
+      var stage = new Kinetic.Stage({
+        container: 'container',
+        width: 1000,
+        height: 900
+      });
+      
+      var shapesLayer = new Kinetic.Layer();
+
+
+      var group = new Kinetic.Group({
+        draggable: true
+      });
+      var colors = 'white';
+
+      for(var n = 0; n < 50; n++) {
+        // anonymous function to induce scope
+        (function() {
+          var i = n;
+          
+          /** Intitilizer for the hexagons */
+          var hexa = new Kinetic.RegularPolygon({
+            sides:6,
+            radius: 40,
+            x: (i/10) * 70 + 210,
+            y: ((i%10) * 80) + 60,
+            /*width: 60,
+            height: 50,*/
+            name: colors[i],
+            fill: colors,
+            //stroke: 'black',
+            strokeWidth: 2
+          });
+
+          //group.add(hexa);
+          shapesLayer.add(hexa);
+
+          /*hexa.on('mouseover', function() {
+            document.body.style.cursor = 'pointer';
+          });
+          hexa.on('mouseout', function() {
+            document.body.style.cursor = 'default';
+          });*/
+
+        })();
+      }
+
+    //shapesLayer.add(group);
+
+   /* group.on('mouseover', function() {
+      document.body.style.cursor = 'pointer';
+    });
+    group.on('mouseout', function() {
+      document.body.style.cursor = 'default';
+    });
+
+    shapesLayer.add(group);*/
+
+      stage.add(shapesLayer);
+    </script>
+  </body>
+</html>
