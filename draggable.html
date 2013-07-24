@@ -1,20 +1,67 @@
 <!DOCTYPE HTML>
 <html>
   <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
     <style>
       body {
         margin: 0px;
         padding: 0px;
+        min-height: 500px;
+      }
+
+      .worksheet{
+        margin-top: 50px;
+        height: 500px;
+        width: 60%;
+        overflow-y: scroll;
+        /*padding: 2px;*/
+        border: 1px solid #A0A0A0;
+      }
+
+      .sidepanel{
+        min-height: 500px;
+        background-color: #D0D0D0;
+        margin-top: 50px;
+      }
+
+      .pallete{
+        padding: 2px;
+        margin: 2px;
+        border: 1px solid #FAFAFA;
+        /*height: 100%*/
+      }
+
+      .pallete_icon{
+        width: 22px;
+        display: inline;
+        padding: none;
+        height: inherit;
+        float: none;
       }
     </style>
   </head>
   <body>
-    <div id="container"></div>
+    <div class="row">
+      <div class="span8 offset1 worksheet">
+        <div id="container"></div>
+      </div>
+      <div class="span3 sidepanel">
+        <div class="pallete"> 
+          <div class="pallete_icon"><img src="img/icons/arrow_right.png"></div>
+          <div class="pallete_text span1">Forces</div>
+        </div>
+      </div>
+    </div>
+    
+    
     <script src="js/kinetic-v4.5.4.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
     <script defer="defer">
       var stage = new Kinetic.Stage({
         container: 'container',
-        width: 1000,
+        width: 800,
         height: 900
       });
       
@@ -24,6 +71,7 @@
       var group = new Kinetic.Group({
         draggable: true
       });
+
       var colors = 'white';
 
       for(var n = 0; n < 100; n++) {
@@ -33,7 +81,7 @@
           var xCord = 0;
           var yCord = 0;
           for (var col = 0; col < 100; col++) {
-            xCord = (col*80*1.5)+ ((row%2) * 60)  + 240;
+            xCord = (col*80*1.5)+ ((row%2) * 60) ;
             yCord = (row*70*(.5)) + 60;
 
             /** Intitilizer for the hexagons */
@@ -42,8 +90,6 @@
               radius: 40,
               x: xCord,
               y: yCord,
-              /*width: 60,
-              height: 50,*/
               name: 'Grid',
               fill: 'white',
               rotationDeg: 90,
@@ -62,7 +108,6 @@
           hexa.on('mouseout', function() {
             document.body.style.cursor = 'default';
           });*/
-
         })();
       }
 
